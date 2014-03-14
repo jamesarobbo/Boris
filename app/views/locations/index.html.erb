@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<title>BORIS</title>
+
+		<link rel="stylesheet" href="/assets/application.css" />
+		<script src="/assets/application.js"></script>
+	</head>
+	<body>
+
+
+		<!-- BELOW GOES IN INDEX -->
+
+		<section id="info">
+
+			<header>
+		 		<h1><%=link_to "BORIS", root_path %></h1>
+				<h2>Where's my nearest boris bike?</h2>
+		  	</header>
+
+		  	<!-- this is the search form -->
+
+			<form action="/" method="get"> <!-- the forward slash means the homepage -->
+				<input type="text" name="search" placeholder="Enter your location">
+			</form>
+
+			
+
+			<% if @locations.empty?%>
+
+			<h3>Oops...either you spelled something wrong or you need to be a tad more specific</h3>
+
+			<div class="image">
+				<img src="../assets/icon_35238.svg" width="200px" alt="">
+			</div>
+
+
+			<% elsif params[:search].present? %>
+
+			<!-- if a search is present display the search value -->
+
+			<h3> Bikes near <%= params[:search] %></h3>
+
+
+			<% else %>
+			
+			<h3>Most bikes are available here...</h3>
+
+			<% end %>	
+ 
+			<ul>
+				
+				<% @locations.each do |location| %>
+
+				<li data-lat="<%=location.latitude || 51.54 %>" data-lng="<%=location.longitude || -0.19 %>">
+
+
+		     		<h3><%= location.name %></h3>
+		     		<p>
+		     		<%= pluralize(location.nb_bikes,"bike") %> available
+		     		</p>
+		     		<p>
+					<%= location.nb_empty_docks %> docking spaces available
+		     		</p>
+		     		
+
+		        	
+
+		        	<!-- if there's a search, calculate how far from the search the boris is -->
+					<% if params[:search].present? %>
+					
+
+					<p>
+						<%= location.distance_to(params[:search]).round(2) %> km 
+					</p>
+
+				
+
+
+					<% end %>
+					
+
+		      	</li>
+
+		      	<% end %>
+		  	</ul>
+
+
+		</section>
+
+		<section id="map"></section>
+
+
+		
+
+
+		<!-- ABOVE GOES IN INDEX -->
+
+
+	</body>
+</html>
+
