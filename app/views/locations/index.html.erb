@@ -1,13 +1,3 @@
-<html>
-	<head>
-		<title>BORIS</title>
-
-		<link rel="stylesheet" href="/assets/application.css" />
-		<script src="/assets/application.js"></script>
-	</head>
-	<body>
-
-
 		<!-- BELOW GOES IN INDEX -->
 
 		<section id="info">
@@ -23,7 +13,7 @@
 				<input type="text" name="search" placeholder="Enter your location">
 			</form>
 
-			
+
 
 			<% if @locations.empty?%>
 
@@ -42,42 +32,45 @@
 
 
 			<% else %>
-			
+
 			<h3>Most bikes are available here...</h3>
 
-			<% end %>	
- 
+			<% end %>
+
 			<ul>
-				
+
 				<% @locations.each do |location| %>
 
-				<li data-lat="<%=location.latitude || 51.54 %>" data-lng="<%=location.longitude || -0.19 %>">
+
+
+				<li data-id="<%= location.id %>" data-available="<%= location.nb_bikes %>" data-empty="<%= location.nb_empty_docks %>" data-lat="<%=location.latitude || 51.54 %>" data-lng="<%=location.longitude || -0.19 %>">
 
 
 		     		<h3><%= location.name %></h3>
-		     		<p>
+		     		<p class="bikes">
 		     		<%= pluralize(location.nb_bikes,"bike") %> available
-		     		</p>
-		     		<p>
-					<%= location.nb_empty_docks %> docking spaces available
-		     		</p>
-		     		
+					 </p>
 
-		        	
+					 <p class="docks">
+					 <%= location.nb_empty_docks %> docking spaces available
+		     		</p>
+
+
+
 
 		        	<!-- if there's a search, calculate how far from the search the boris is -->
 					<% if params[:search].present? %>
-					
+
 
 					<p>
-						<%= location.distance_to(params[:search]).round(2) %> km 
+						<%= location.distance_to(params[:search]).round(2) %> km
 					</p>
 
-				
+
 
 
 					<% end %>
-					
+
 
 		      	</li>
 
@@ -90,12 +83,7 @@
 		<section id="map"></section>
 
 
-		
+
 
 
 		<!-- ABOVE GOES IN INDEX -->
-
-
-	</body>
-</html>
-

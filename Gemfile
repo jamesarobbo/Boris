@@ -4,7 +4,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.3'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: :development
+
+# Use postgres for Heroku
+gem "pg", group: :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -58,5 +61,4 @@ gem "activeadmin", github: "gregbell/active_admin"
 gem "httparty"
 # gem "nokogiri"
 
-
-
+gem "rails_12factor"

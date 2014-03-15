@@ -4,17 +4,32 @@ $(document).ready(function () {
 	// data for boris bikes in london
 	// co-ordinates are easiest to get from bing maps
 	var stores = [];
+	var markers = [];
 
 	$("ul li").each(function () {
-
 		var store = {};
+		store.id = $(this).data("id");
 		store.location = [$(this).data("lat"), $(this).data("lng")];
 		store.title = $(this).find("h3").text();
 		store.address = $(this).find("p").text();
 		store.color = "red";
+		store.available = $(this).data("available");
+		store.empty = $(this).data("empty");
 		stores.push(store);
-
 	});
+
+	$("ul li").on("click", function () {
+		var id = $(this).data("id");
+
+		for (var i = 0; i < stores.length; i++) {
+			if (stores[i].id == id) {
+				markers[i].openPopup();
+			}
+		}
+
+		return false;
+	});
+
 
 	// mapbox tiles
 	var mapTiles = "https://a.tiles.mapbox.com/v3/riklomas.h1d63np6/{z}/{x}/{y}.png";
@@ -32,14 +47,16 @@ $(document).ready(function () {
 			iconUrl: "/assets/" + store.color + "marker.png",
 			iconSize: [60, 60],
 			iconAnchor: [30, 60],
-			popupAnchor: [0, -70]
+			popupAnchor: [0, -60]
 		});
 
 		var marker = L.marker(store.location, {	icon: markerIcon });
 		marker.addTo(map);
 
-		var popup = "<h3>" + store.title + "</h3><p>" + store.address + "</p>";
+		var popup = "<h3>" + store.title + "</h3>" + "<p>" + store.available + " bikes available</p><p>" + store.empty + " docking stations available</p>";
 		marker.bindPopup(popup);
+
+		markers.push(marker);
 
 		bounds.extend(store.location);
 	}
