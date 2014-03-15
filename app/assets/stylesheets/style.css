@@ -39,7 +39,7 @@ header {
 	margin: 0 0 20px 0;
 	font-weight: 500;
 	text-transform: uppercase;
-	font-size: 18px;  
+	font-size: 18px;
 	line-height: 1.25;
 }
 
@@ -58,6 +58,7 @@ li {
 	padding: 10px 20px 10px 45px;
 	transition: background 0.25s;
 	background-image: url(/assets/redicon.png);
+	cursor:pointer;
 }
 
 li:hover {
@@ -97,14 +98,20 @@ li h3 {
 }
 
 /* overwriting leafleft */
+
+
+
+
 .leaflet-popup-content {
 	font-family: Raleway, Arial, sans-serif;
+
 }
 
 .leaflet-popup-content h3 {
 	margin: 0;
 	font-size: 16px;
 	font-weight: 500;
+
 }
 
 .leaflet-popup-content p {
@@ -143,7 +150,7 @@ form {
 
 input[type=text],
 input[type=email],
-input[type=number], 
+input[type=number],
 textarea {
 	-webkit-appearance: none;
 	width: 100%;
