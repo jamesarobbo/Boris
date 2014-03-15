@@ -1,12 +1,12 @@
 
 
 task scrape_borisAPI: :environment do
-	
+
 	@json = HTTParty.get("http://borisapi.heroku.com/stations.json")
 
 	@json.each do |station|
 
-		
+
 		@location = Location.new
 		@location.name = station["name"]
 		@location.latitude = station["lat"]
@@ -17,6 +17,3 @@ task scrape_borisAPI: :environment do
 	end
 
 end
-
-
-# how does location.nb_empty_docks from the index page for example know to link here?
