@@ -62,5 +62,3 @@ gem "httparty"
 # gem "nokogiri"
 
 gem "rails_12factor"
-
-gem 'sentry-raven'
