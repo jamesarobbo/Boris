@@ -53,7 +53,7 @@ $(document).ready(function () {
 		var marker = L.marker(store.location, {	icon: markerIcon });
 		marker.addTo(map);
 
-		var popup = "<h3>" + store.title + "</h3>" + "<p>" + store.available + " bikes available</p><p>" + store.empty + " docking stations available</p>";
+		var popup = "<h3>" + store.title + "</h3>" + "<p>" + store.available + " bikes available</p><p>" + store.empty + " docking stations available</p>" ;
 		marker.bindPopup(popup);
 
 		markers.push(marker);
