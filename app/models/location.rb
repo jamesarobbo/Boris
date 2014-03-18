@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
 	validates :longitude, uniqueness: true
 	validates :latitude, uniqueness: true
 
-	
+
 
 	#instead of letting users enter the long and lat themselves we'll have Geocoder do that by the address
 

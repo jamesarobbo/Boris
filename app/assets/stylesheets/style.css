@@ -90,6 +90,13 @@ h3 {
 	font-size: 19px;
 }
 
+h4 {
+	margin: 30px 20px 10px 20px;
+	font-size:12px;
+	font-weight:700;
+
+}
+
 
 li h3 {
 	font-size: 16px;
@@ -186,5 +193,6 @@ div.image {
 	text-align: center;
 	position: relative;
 	left: -10px;
-	top:50px;
+	top:70px;
+	margin-bottom:220px;
 }

@@ -24,6 +24,7 @@
 			</div>
 
 
+
 			<% elsif params[:search].present? %>
 
 			<!-- if a search is present display the search value -->
@@ -63,7 +64,7 @@
 
 
 					<p>
-						<%= location.distance_to(params[:search]).round(2) %> km from <%= params[:search] %>
+						<%= location.distance_to(params[:search]).round(2) %> mi from <%= params[:search] %>
 					</p>
 
 
@@ -76,7 +77,9 @@
 
 		      	<% end %>
 		  	</ul>
-
+<h4>
+	Built in London by James Robinson
+</h4>
 
 		</section>
 
