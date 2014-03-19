@@ -19,13 +19,13 @@ task scrape_borisAPI: :environment do
         name: station["name"],
         latitude: station["lat"],
         longitude: station["long"],
-        nb_bikes: ["nb_bikes"],
+        nb_bikes: station["nb_bikes"],
         nb_empty_docks: station["nb_empty_docks"]
 
       )
     end
 
 	end
-	
+
 
 end
