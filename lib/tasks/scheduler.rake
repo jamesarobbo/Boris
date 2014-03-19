@@ -1,9 +1,3 @@
-namespace :boris do
-
-task get_rid: :environment do
-	Location.delete_all
-end
-
 task scrape_borisAPI: :environment do
 
 	@json = HTTParty.get("http://borisapi.heroku.com/stations.json")
@@ -21,7 +15,7 @@ task scrape_borisAPI: :environment do
       @location.nb_empty_docks = station["nb_empty_docks"]
       @location.save
     else
-      @location.update(    
+      @location.update(
         name: station["name"],
         latitude: station["lat"],
         longitude: station["long"],
@@ -32,8 +26,6 @@ task scrape_borisAPI: :environment do
     end
 
 	end
-end
-
-task all: [:get_rid, :scrape_borisAPI]
+	
 
 end
