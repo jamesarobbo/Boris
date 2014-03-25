@@ -14,6 +14,7 @@ body {
 	color: #444444;
 }
 
+
 section#info {
 	position: absolute;
 	top: 0;
@@ -90,11 +91,24 @@ h3 {
 	font-size: 19px;
 }
 
-h4 {
-	margin: 30px 20px 10px 20px;
+h4.credit {
+	margin: 30px 20px 20px 23px;
 	font-size:12px;
 	font-weight:700;
 
+}
+
+h4.credit a {
+	height: 20px;
+	background-image: url(/assets/twitter.png);
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 30px;
+	text-decoration: none;
+	color: #444444;
 }
 
 
@@ -203,3 +217,5 @@ div.image {
 	top:70px;
 	margin-bottom:220px;
 }
+
+
