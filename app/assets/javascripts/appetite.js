@@ -32,7 +32,7 @@ $(document).ready(function () {
 
 
 	// mapbox tiles
-	var mapTiles = "https://a.tiles.mapbox.com/v3/riklomas.h1d63np6/{z}/{x}/{y}.png";
+	var mapTiles = "https://a.tiles.mapbox.com/v3/jamesarobbo.ijglma8e/{z}/{x}/{y}.png";
 	var map = L.map('map', {
 		layers: new L.TileLayer(mapTiles)
 	});
