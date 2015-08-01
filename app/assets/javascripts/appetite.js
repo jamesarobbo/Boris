@@ -43,12 +43,20 @@ $(document).ready(function () {
 
 		var store = stores[i];
 
+		var size
+
+   	if($(window).width() <= 724){ 
+   		size = [30, 30]
+		}else{
+			size = [60, 60]
+		}
+		
 		var markerIcon = L.icon({
-			iconUrl: "/assets/" + store.color + "marker.png",
-			iconSize: [60, 60],
-			iconAnchor: [30, 60],
-			popupAnchor: [0, -60]
-		});
+				iconUrl: "/assets/" + store.color + "marker.png",
+				iconSize: size,
+				iconAnchor: [30, 60],
+				popupAnchor: [0, -60]
+			});
 
 		var marker = L.marker(store.location, {	icon: markerIcon });
 		marker.addTo(map);
