@@ -52,13 +52,15 @@ end
 
 # lets add some gems for the boris project
 
-gem "steer"
+# gem "steer"
 gem "simple_form"
 gem "geocoder" # this goes and finds long and lat for an address that you type in.
 
 gem "activeadmin", github: "gregbell/active_admin"
 
 gem "httparty"
-# gem "nokogiri"
+gem "nokogiri"
 
 gem "rails_12factor"
+
+gem 'foundation-rails'

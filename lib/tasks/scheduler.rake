@@ -1,31 +1,31 @@
 task scrape_borisAPI: :environment do
 
-	@json = HTTParty.get("http://borisapi.heroku.com/stations.json")
+	@page = HTTParty.get("https://tfl.gov.uk/tfl/syndication/feeds/cycle-hire/livecyclehireupdates.xml")
+  @doc = Nokogiri::XML(@page.body)
 
-	@json.each do |station|
+	@doc.css('station').each do |station|
 
-    @location = Location.find_by_name(station["name"])
+    @location = Location.find_by_name(station.css('name').text)
 
     if @location.nil?
       @location = Location.new
-      @location.name = station["name"]
-      @location.latitude = station["lat"]
-      @location.longitude = station["long"]
-      @location.nb_bikes = station["nb_bikes"]
-      @location.nb_empty_docks = station["nb_empty_docks"]
+      @location.name = station.css('name').text
+      @location.latitude = station.css('lat').text
+      @location.longitude = station.css('long').text
+      @location.nb_bikes = station.css('nbBikes').text
+      @location.nb_empty_docks = station.css('nbEmptyDocks').text
       @location.save
     else
       @location.update(
-        name: station["name"],
-        latitude: station["lat"],
-        longitude: station["long"],
-        nb_bikes: station["nb_bikes"],
-        nb_empty_docks: station["nb_empty_docks"]
+        name: station.css('name').text,
+        latitude: station.css('lat').text,
+        longitude: station.css('long').text,
+        nb_bikes: station.css('nbBikes').text,
+        nb_empty_docks: station.css('nbEmptyDocks').text
 
       )
     end
 
 	end
-
 
 end

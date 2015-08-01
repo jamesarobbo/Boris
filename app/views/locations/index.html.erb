@@ -2,22 +2,24 @@
 
 		<section id="info">
 
-			<header>
-		 		<h1><%=link_to "FIND A BORIS", root_path %></h1>
-				<h2>Where's my nearest boris bike?</h2>
+			<header class = 'medium-12 columns'>
+		 		<h2><%=link_to "FIND A BORIS", root_path %></h2>
+				<h3>Where's my nearest boris bike?</h3>
+
+          <form class = 'search' action="/" method="get"> <!-- the forward slash means the homepage -->
+            <input type="text" name="search" placeholder="e.g. Leman Street, Whitechapel">
+          </form>
 		  	</header>
 
 		  	<!-- this is the search form -->
 
-			<form action="/" method="get"> <!-- the forward slash means the homepage -->
-				<input type="text" name="search" placeholder="e.g. Leman Street, Whitechapel">
-			</form>
+
 
 
 
 			<% if @locations.empty?%>
 
-			<h3>Oops...either you spelled something wrong or you need to be a tad more specific</h3>
+			<h3 class='medium-12 columns'>Oops...either you spelled something wrong or you need to be a tad more specific</h3>
 
 			<div class="image">
 				<img src="../assets/icon_35238.svg" width="200px" alt="">
@@ -29,54 +31,50 @@
 
 			<!-- if a search is present display the search value -->
 
-			<h3> Bikes near <%= params[:search] %></h3>
+			<h3 class='medium-12 columns'> Bikes near <%= params[:search] %></h3>
 
-
+      
 			<% else %>
 
-			<h3>Most bikes are available here...</h3>
+      <h3 class='medium-12 columns'>Most bikes are available here...</h3>
 
-			<% end %>
+      <% end %>
 
-			<ul>
+      <div class="medium-12 columns">
+  			
+  			<ul class = 'list-container'>
 
-				<% @locations.each do |location| %>
-
-
-
-				<li data-id="<%= location.id %>" data-available="<%= location.nb_bikes %>" data-empty="<%= location.nb_empty_docks %>" data-lat="<%=location.latitude || 51.54 %>" data-lng="<%=location.longitude || -0.19 %>">
-
-
-		     		<h3><%= location.name %></h3>
-		     		<p class="bikes">
-		     		<%= pluralize(location.nb_bikes,"bike") %> available
-					 </p>
-
-					 <p class="docks">
-					 <%= location.nb_empty_docks %> docking spaces available
-		     		</p>
+  				<% @locations.each do |location| %>
 
 
 
+    				<li class = 'station' data-id="<%= location.id %>" data-available="<%= location.nb_bikes %>" data-empty="<%= location.nb_empty_docks %>" data-lat="<%=location.latitude || 51.54 %>" data-lng="<%=location.longitude || -0.19 %>">
 
-		        	<!-- if there's a search, calculate how far from the search the boris is -->
-					<% if params[:search].present? %>
+              <div class = 'station-details'>
+                <h3><%= location.name %></h3>
+                <p class="bikes">
+                  <%= pluralize(location.nb_bikes,"bike") %> available
+                </p>
 
+                <p class="docks">
+                  <%= location.nb_empty_docks %> docking spaces available
+                </p>
 
-					<p>
-						<%= location.distance_to(params[:search]).round(2) %> mi from <%= params[:search] %>
-					</p>
+        		        	<!-- if there's a search, calculate how far from the search the boris is -->
+                <% if params[:search].present? %>
 
+                  <p>
+                    <%= location.distance_to(params[:search]).round(2) %> mi from <%= params[:search] %>
+                  </p>
 
+                <% end %>
+              </div>
 
+    		    </li>
 
-					<% end %>
-
-
-		      	</li>
-
-		      	<% end %>
-		  	</ul>
+  		    <% end %>
+  		  </ul>
+      </div>
 	<h4 class="credit">
 		<a target = "_blank" href="https://www.twitter.com/jamesarobbo">Built in London by James Robinson</a>
 	</h4>
